@@ -1,0 +1,73 @@
+
+vbSPT, VB3_HMManalysis, Copyright (C) 2012 Martin Lindén and Fredrik Persson 
+v 1.1.2, Martin Lindén 2014.
+
+This program comes with ABSOLUTELY NO WARRANTY. 
+This is free software, and you are welcome to redistribute it 
+under certain conditions. See license.txt for details. 
+
+Additional permission under GNU GPL version 3 section 7 
+
+If you modify this Program, or any covered work, by linking or combining it 
+with Matlab or any Matlab toolbox, the licensors of this Program grant you 
+additional permission to convey the resulting work. 
+
+----------
+08-May-2016 17:52:16 : Starting greedy optimization to find best model.
+jobID        : a short string to describe this job
+runinput file: runinput_short.m
+input  file  : ./InputData/testdata_vbSPT.mat
+trj field    : finalTraj
+output file  : ./Results/testresult_vbSPT_HMM_short.mat
+log file     : ./Results/testresult_vbSPT_HMM_short.log
+----------
+Read options structure based on runinput file runinput_short.m
+Starting parallel pool (parpool) using the 'local' profile ... connected to 4 workers.
+
+theVBpool = 
+
+ <a href="matlab: help parallel.Pool">Pool</a> with properties: 
+
+            Connected: true
+           NumWorkers: 4
+              Cluster: <a href="matlab: parallel.internal.display.Displayer.displayObject('1F8B0800000000000000AD53B14EC3400C75D2B482810A84843A3232258018604445A8202A2402A25B7A694F28D5F5125D8244B78E7C0663473E834F6061E73338934B730D09058125CBB1633FFBDDF9C038EB8294A6D427A90DA92B52372015636E2DE8B62F5DF477A4464410C628B3039E50C109B387411C3132B1DBEC3E96A12E1D539E8488DBD170D7145E5DF90DD523EB837E2BFD7C33B57F9922DE8395E3AD16F030A763E578A6F241E339ABE5F56649BD3E4F5DF2AE2B1F2D9E4186D3AFFDECBC90F369C0E8AD20514485E7A9FA6DAD3EEF97FA59CF2C8EF92DA39AF77B21DF5431B448BF2F75AAF459EAABFA9FC9F524A2704212028BF7577DD1502AD8AB56FE6B418C125F8F99F0954F314797A666F57DB3545CBFDF2D0D675DF9739A8394BE7D110E084BF15EE077FBB2A97CB4E7A1EF26A1207714019320E4F99CD192398F0A73A2EFDCC454C4CE311F4AE3D291E8101E53EED8639230E23B0CC7F614096F14FAB173B5BFBB77E06BE73383EABD2B9E33E61F2EE10F05FEFF5DFF08DFBFF71E2CEE49EF13307FEFFA3EFCE5BDA37C00C846F08D30050000')">local</a>
+        AttachedFiles: {}
+          IdleTimeout: 30 minute(s) (30 minutes remaining)
+          SpmdEnabled: true
+
+Iter 3. Adding 129 extra transitions to final model helped : dF/|F| = 1.1233e-08, time : 0.011293 s.
+Iter 3. Finished greedy search in 2.688 s, with 2 states.
+Iter 2. Adding 129 extra transitions to final model helped : dF/|F| = 1.108e-08, time : 0.01138 s.
+Iter 2. Finished greedy search in 3.4447 s, with 2 states.
+Iter 1. Adding 129 extra transitions to final model helped : dF/|F| = 1.1067e-08, time : 0.011297 s.
+Iter 1. Finished greedy search in 3.4789 s, with 2 states.
+Sorting and regenerating best model and estimates
+ N     it   dF/|F|   d<p>/p   p 
+01     2  0.00e+00 0.00e+00  M.wPi , F : -5.335e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wPi limiting). 
+ N     it   dF/|F|   d<p>/p   p 
+02     2  3.54e-09 7.24e-04  M.wa , F : -5.311e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wa limiting). 
+ N     it   dF/|F|   d<p>/p   p 
+03     2  9.65e-09 1.51e-03  M.wB , F : -5.312e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wB limiting). 
+ N     it   dF/|F|   d<p>/p   p 
+06     2  9.92e-09 3.67e-03  M.wB , F : -5.315e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wB limiting). 
+ N     it   dF/|F|   d<p>/p   p 
+05     2  9.85e-09 5.05e-03  M.wB , F : -5.315e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wB limiting). 
+ N     it   dF/|F|   d<p>/p   p 
+04     2  9.92e-09 2.42e-03  M.wB , F : -5.314e+04 
+Converged normally after 2 iterations, relTolF = 1e-08, tolPar = 0.01, (M.wB limiting). 
+Best model size: 2, from iteration 3.
+Saving ./Results/testresult_vbSPT_HMM_short.mat after 0.27245 min.
+Read options structure based on runinput file runinput_short.m
+Read options structure based on runinput file runinput_short.m
+jobID: a short string to describe this job
+Starting bootstrapping...
+----------
+bootstrap : 10 resampling in 0.23415 s.
+Finished runinput_short.m bootstrapping in 0.0045152 min.
+Parallel pool using the 'local' profile is shutting down.
+08-May-2016 17:52:36 : Finished runinput_short.m. Total run time 0.33688 min.
