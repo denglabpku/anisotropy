@@ -6,7 +6,7 @@
 close all; clear; clc;
 %% Plot local anisotropy
 %% Plot the max_FreSeg_size vs f_180_0
-input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/LocalAnisotropy/';
+input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/AngularAnalysis/LocalAnisotropy/';
 input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-18_17_38_08.mat';
 load([input_path input_name],'FinalResults','inputStruct','FreSeg_size');
 
@@ -82,7 +82,7 @@ print(fullfile(fig_output, fig_name),'-dpdf','-r0'); % open svg in illustrator f
 
 %% Plot the polar histogram of angles from pooled global free segments
 clear; close all;
-input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/LocalAnisotropy/';
+input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/AngularAnalysis/LocalAnisotropy/';
 input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-18_17_38_08.mat'; 
 load([input_path input_name],'FinalResults','inputStruct','FreSeg_size');
 
