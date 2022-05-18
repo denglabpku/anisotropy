@@ -14,8 +14,8 @@ clear; clc; close all;
 
 %% Modify the path but keep the rest
 %% Before the start, remember to add the parent folder of anisotropy to matlab path
-ParentPath = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData';
-SampleNamePrefix = 'U2OS_XLONE-FOXA2-Halo_';
+ParentPath = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData';
+SampleNamePrefix = 'U2OS_FOXA2-Halo_';
 
 %% PROCESS START
 ClosestDist = 2; % closest distance between particle in micrometers. This is the user-specified threshold that determines which particles will be removed
@@ -34,7 +34,7 @@ mkdir([ParentPath filesep 'AngularAnalysis' filesep 'GlobalAnisotropy' filesep '
 resultDir = [ParentPath filesep 'AngularAnalysis' filesep 'GlobalAnisotropy' filesep];
 
 %Define frame rates string contained in file name
-frameRate = {'7p5ms','13p5ms'};
+frameRate = {'133Hz','74Hz'};
 % SampleName
 
 SampleName = {...

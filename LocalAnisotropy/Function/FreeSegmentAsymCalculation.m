@@ -1,5 +1,5 @@
 function outputStruct = FreeSegmentAsymCalculation(inputStruct)
-%FreeSegmentAsymCalculation Find the defined number (max_FreSeg_size) of free segment before and after a bound segment and calculate the corresponding f_180_0.
+%FreeSegmentAsymCalculation Find the defined number (FreSeg_size) of free segment before and after a bound segment and calculate the corresponding f_180_0.
 %   Detailed explanation goes here:
 %   (1)Determine which track are mixed with bound and unbound segments
 %   (2)Find the free segment after or before a bound state segment
@@ -18,7 +18,7 @@ fprintf('Data loaded:\n %s%s\n.',inputStruct.dataPath, inputStruct.dataName);
 
 BoundState = inputStruct.BoundState;
 FreeState = inputStruct.FreeState;
-max_FreSeg_size = inputStruct.max_FreSeg_size;
+FreSeg_size = inputStruct.FreSeg_size;
 nBins = inputStruct.nBins;
 JackKnife_fraction = inputStruct.JackKnife_fraction;
 JackKnife_iterations = inputStruct.JackKnife_iterations;
@@ -62,7 +62,7 @@ for i = 1:totBoUnboNum
                 continue;
             else
                 while BoUnbo_CellTrackViterbiClass{i}(seg2_fre_idx) == FreeState
-                    if length(FreeSeg_AfBo{j}) >= max_FreSeg_size % exceed defined max free segment size
+                    if length(FreeSeg_AfBo{j}) >= FreSeg_size % exceed defined max free segment size
                         break;
                     else
                         FreeSeg_AfBo{j} = [FreeSeg_AfBo{j}  seg2_fre_idx];
@@ -99,7 +99,7 @@ for i = 1:totBoUnboNum
                 % added free segment are still free and not exceed the
                 % first segments of the state array
                 while BoUnbo_CellTrackViterbiClass{i}(segM1_fre_idx) == FreeState
-                    if length(FreeSeg_BfBo{k}) >= max_FreSeg_size % exceed defined max free segment size
+                    if length(FreeSeg_BfBo{k}) >= FreSeg_size % exceed defined max free segment size
                         break;
                     else 
                         FreeSeg_BfBo{k} = [segM1_fre_idx FreeSeg_BfBo{k}];
@@ -146,7 +146,7 @@ filt_BoSegAfterFreeSeg_BfB = BoSegAfterFreeSeg_BfB(temp_free_length_BfBo ~= 1);
 k = 1;
 totFreSeg_AfBo = length(filt_FreeSeg_AfBo);
 for i = 1:length(filt_IdxLUT_FreeSeg_AfBo)
-    if length(filt_FreeSeg_AfBo{i}) == max_FreSeg_size % only calculate angles from max_FreSeg_size number of free segments
+    if length(filt_FreeSeg_AfBo{i}) == FreSeg_size % only calculate angles from FreSeg_size number of free segments
      
         trackStartIdx = filt_FreeSeg_AfBo{i}(1);
         trackEndIdx = filt_FreeSeg_AfBo{i}(end);
@@ -192,7 +192,7 @@ end
 k = 1;
 totFreSeg_BfBo = length(filt_FreeSeg_BfBo);
 for i = 1:length(filt_IdxLUT_FreeSeg_BfBo)
-    if length(filt_FreeSeg_BfBo{i}) == max_FreSeg_size % only calculate angles from max_FreSeg_size number of free segments
+    if length(filt_FreeSeg_BfBo{i}) == FreSeg_size % only calculate angles from FreSeg_size number of free segments
      
         trackStartIdx = filt_FreeSeg_BfBo{i}(1);
         trackEndIdx = filt_FreeSeg_BfBo{i}(end);

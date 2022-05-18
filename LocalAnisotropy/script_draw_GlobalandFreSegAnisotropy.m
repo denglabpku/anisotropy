@@ -6,11 +6,14 @@
 close all; clear; clc;
 %% Plot local anisotropy
 %% Plot the max_FreSeg_size vs f_180_0
-input_path = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData\AngularAnalysis\LocalAnisotropy\';
-input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-13_21_05_09.mat';
-load([input_path input_name],'FinalResults','inputStruct','max_FreSeg_size');
+input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/LocalAnisotropy/';
+input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-18_17_38_08.mat';
+load([input_path input_name],'FinalResults','inputStruct','FreSeg_size');
 
 fig_output = [input_path filesep 'Figures'];
+if ~exist(fig_output,'dir')
+    mkdir(fig_output)
+end
 
 colorChoice = {'#0072BD','#D95319','#EDB120','#7E2F8E','#77AC30','#4DBEEE'};
 
@@ -25,13 +28,13 @@ xlabel('free segment lengths')
 ylabel('$$\mathbf{Fold(\frac{180\pm30^{\circ}}{0\pm30^{\circ}})}$$','Interpreter','latex');
 for SampleIter = 1:length(inputStruct)
 
-    errorbar(max_FreSeg_size,[FinalResults(:,SampleIter).FreAfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreAfBo_std_f_180_0],...
+    errorbar(FreSeg_size,[FinalResults(:,SampleIter).FreAfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreAfBo_std_f_180_0],...
         'LineStyle','--','Color','k','LineWidth',1,...
         'Marker','o','MarkerSize',6,'MarkerFaceColor',colorChoice{SampleIter},'MarkerEdgeColor','k');
 end
-xlim([1 max(max_FreSeg_size)+1]);
+xlim([1 max(FreSeg_size)+1]);
 ylim([1 4.5]);
-xticks(1:max(max_FreSeg_size)+1);
+xticks(1:max(FreSeg_size)+1);
 hold off
 set(gca,'FontSize',14);
 
@@ -42,13 +45,13 @@ title('anisotropy of free segments before one bound segment')
 xlabel('free segment lengths')
 ylabel('$$\mathbf{Fold(\frac{180\pm30^{\circ}}{0\pm30^{\circ}})}$$','Interpreter','latex');
 for SampleIter = 1:length(inputStruct)
-    errorbar(max_FreSeg_size,[FinalResults(:,SampleIter).FreBfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreBfBo_std_f_180_0],...
+    errorbar(FreSeg_size,[FinalResults(:,SampleIter).FreBfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreBfBo_std_f_180_0],...
         'LineStyle','--','Color','k','LineWidth',1,...
         'Marker','o','MarkerSize',6,'MarkerFaceColor',colorChoice{SampleIter},'MarkerEdgeColor','k');
 end
-xlim([1 max(max_FreSeg_size)+1]);
+xlim([1 max(FreSeg_size)+1]);
 ylim([1 4.5]);
-xticks(1:max(max_FreSeg_size)+1);
+xticks(1:max(FreSeg_size)+1);
 % text_legend = {inputStruct(:).sample_prefix};
 % legend(text_legend,'Box','off');
 set(gca,'FontSize',14);
@@ -59,13 +62,13 @@ title('anisotropy of free segments after or before bound segments')
 xlabel('free segment lengths')
 ylabel('$$\mathbf{Fold(\frac{180\pm30^{\circ}}{0\pm30^{\circ}})}$$','Interpreter','latex');
 for SampleIter = 1:length(inputStruct)
-    errorbar(max_FreSeg_size,[FinalResults(:,SampleIter).FreABfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreABfBo_std_f_180_0],...
+    errorbar(FreSeg_size,[FinalResults(:,SampleIter).FreABfBo_mean_f_180_0],[FinalResults(:,SampleIter).FreABfBo_std_f_180_0],...
         'LineStyle','--','Color','k','LineWidth',1,...
         'Marker','o','MarkerSize',6,'MarkerFaceColor',colorChoice{SampleIter},'MarkerEdgeColor','k');
 end
-xlim([1 max(max_FreSeg_size)+1]);
+xlim([1 max(FreSeg_size)+1]);
 ylim([1 4.5]);
-xticks(1:max(max_FreSeg_size)+1);
+xticks(1:max(FreSeg_size)+1);
 text_legend = {inputStruct(:).sample_prefix};
 legend(text_legend,'Box','off');
 set(gca,'FontSize',14);
@@ -79,17 +82,20 @@ print(fullfile(fig_output, fig_name),'-dpdf','-r0'); % open svg in illustrator f
 
 %% Plot the polar histogram of angles from pooled global free segments
 clear; close all;
-input_path = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData\AngularAnalysis\LocalAnisotropy\';
-input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-13_21_05_09.mat'; 
-load([input_path input_name],'FinalResults','inputStruct','max_FreSeg_size');
+input_path = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/LocalAnisotropy/';
+input_name = 'anisotropy_maxFreeAfBfbound_FOXA2related_2022-05-18_17_38_08.mat'; 
+load([input_path input_name],'FinalResults','inputStruct','FreSeg_size');
 
 fig_output = [input_path filesep 'Figures'];
+if ~exist(fig_output,'dir')
+    mkdir(fig_output)
+end
 
 for segIter = [1 2] % max_segment 2 and 3
     fig = figure('Visible','off');
     t = tiledlayout(3,2,'TileSpacing','compact');
-    title(t,sprintf('Polar histogram (free segment length: %d)',FinalResults(segIter,1).max_FreSeg_size));
-    for SampleIter = 1:6
+    title(t,sprintf('Polar histogram (free segment length: %d)',FinalResults(segIter,1).FreSeg_size));
+    for SampleIter = 1:length(inputStruct)
         nexttile;
         polarplot(FinalResults(segIter,SampleIter).Alla,FinalResults(segIter,SampleIter).AllVals,...
                 'Color', 'black');

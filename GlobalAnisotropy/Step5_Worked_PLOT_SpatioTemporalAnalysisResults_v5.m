@@ -32,11 +32,11 @@ clearvars -except ParentPath SampleNamePrefix resultDir; clc; close all;
 DataSet = 1; % number of final mat of SpatioTemporal analysis of anisotropy
 c_map = flip(hot,1); % Define colormap of imagesc plot
 c_map = c_map(20:200,:);
-resultDir = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData\AngularAnalysis\GlobalAnisotropy\';
+resultDir = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/AngularAnalysis/GlobalAnisotropy/';
 
 % Load the appropriate dataset
 if DataSet == 1
-    load([resultDir, filesep, 'SpatioTemporalAnalysis', filesep, 'PA646_SpatioTemporalAnalysis_2022-05-13_17_00_26.mat']);
+    load([resultDir, filesep, 'SpatioTemporalAnalysis', filesep, 'PA646_SpatioTemporalAnalysis_2022-05-18_17_03_45.mat']);
     plot_path = [resultDir, filesep, 'QC_Plots', filesep];
     if ~exist(plot_path,'dir')
         mkdir(plot_path)
@@ -45,7 +45,7 @@ if DataSet == 1
 end
 
 % Rename loaded sample name
-FinalResults(1,1).SampleName = 'U2OS XLONE FOXA2-Halo';
+FinalResults(1,1).SampleName = 'U2OS FOXA2-Halo';
 
 %%
 % Loop over all the samples:

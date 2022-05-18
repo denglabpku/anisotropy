@@ -6,7 +6,7 @@
 
 
 % Inputs
-inputfile = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData\AngularAnalysis\2TimePoints\\QC_data_reformatted\U2OS_XLONE-FOXA2-Halo_74Hz_pooled_QC_CD2_reformatted.mat';
+inputfile = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/AngularAnalysis/GlobalAnisotropy//QC_data_reformatted/U2OS_FOXA2-Halo_74Hz_pooled_QC_CD2_reformatted.mat';
 trajectoryfield = 'CellTracks';
 
 % Computing strategy
@@ -15,7 +15,7 @@ parallel_start = 'theVBpool=gcp';  % executed before the parallelizable loop.
 parallel_end = 'delete(theVBpool)'; % executed after the parallelizable loop.
 
 % Saving options
-outputfile = 'C:\Users\Zuhui\OneDrive - 北京大学生物医学前沿创新中心\Documents\MATLAB\SPT_Analysis\anisotropy-denglabpku\ExampleData\AngularAnalysis\2TimePoints\\HMM_first_QC_data\U2OS_XLONE-FOXA2-Halo_74Hz_pooled_QC_CD2_classified.mat';
+outputfile = '/home/dell/Documents/METHOD/denglabpku-repository/anisotropy/ExampleData/AngularAnalysis/GlobalAnisotropy//HMM_first_QC_data/U2OS_FOXA2-Halo_74Hz_pooled_QC_CD2_classified.mat';
 jobID = 'Anders: vbSPT job is running';
 
 % Data properties
@@ -62,6 +62,8 @@ prior_tDstrength = 2*prior_tD/timestep;  % transition rate strength (number of p
 %prior_type_A = 'dwell_Bflat';
 %prior_tD = 10*timestep;      % prior dwell time in [s]. Must be greater than timestep (recommended > 2*timestep)
 %prior_tDstd = 100*prior_tD;  % standard deviation of prior dwell times [s].
+
+
 
 
 
